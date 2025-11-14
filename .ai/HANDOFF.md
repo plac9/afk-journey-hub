@@ -10,6 +10,7 @@
 - Created `/api/health` along with a Dockerfile, `docker-compose.homelab.yml`, and `scripts/deploy/homelab-up.sh` to spin up a homelab preview with optional webhook notifications
 - Added webhook helper `scripts/maintenance/notify-webhook.sh`, documented Docker/telemetry workflows across README + docs, and expanded Playwright coverage (new YAML data assertions + shared test helpers)
 - Synced the repo to `placlair-admin@docker.home.laclair.us:~/afk-journey-hub`, generated a `.env.local` targeting `https://afk.home.laclair.us`, relaunched `docker compose -f docker-compose.homelab.yml up -d --build` with Traefik labels/external network, and added DNS so `afk.home.laclair.us` now resolves to the container over HTTPS.
+- Created the first local commit (`feat: bootstrap afk journey hub`); push to `git@github.com:plac9/afk-journey-hub.git` is blocked until the remote repo exists.
 
 ### What Changed
 - **Application**: Hero cards + detail pages display tier metadata, events show rotation cheat sheet, calculators emit telemetry via Supabase, `/api/health` underpins Docker health checks, and analytics snippet now renders for configured domains
