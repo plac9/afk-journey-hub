@@ -58,6 +58,7 @@ Use the included Docker assets to run a long-lived preview inside the lab networ
    - Sends a webhook if `NOTIFY_WEBHOOK_URL` points at Slack/Discord
 4. Browse `http://<homelab-host>:4000` to validate the deployed bundle.
 5. If you want the friendly DNS (`afk.home.laclair.us`), route that host through Traefik/NGINX to `docker.home.laclair.us:4000` so the portal is reachable across the lab network.
+6. Verify Traefik by running `curl -k -I https://afk.home.laclair.us` and confirming an HTTP 200 response.
 
 Re-run the script anytime content or code changes land; Compose handles rolling the container.
 

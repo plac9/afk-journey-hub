@@ -1,6 +1,6 @@
 # AFK Journey Hub - Session Context
 
-**Last Updated**: 2025-11-14 04:45
+**Last Updated**: 2025-11-14 18:20
 **Status**: Development
 **Version**: v0.2.0
 
@@ -8,7 +8,7 @@
 - **Current Phase**: Content/data enrichment + deployment automation
 - **Active Work**: YAML-driven hero tiers + event cadence, Supabase telemetry hooks, analytics, Docker homelab packaging, and test coverage
 - **Blockers**: `contentlayer build` prints a harmless Node 25 stack trace—use Node 20 to silence it
-- **Next Steps**: Flesh out advanced calculators/search, provision GitHub/Vercel/Supabase resources, and expand monitoring once remotes exist
+- **Next Steps**: Flesh out advanced calculators/search, provision GitHub/Vercel/Supabase resources (see `docs/maintenance/TODO.md`), and keep the homelab preview monitored
 
 ## Project Overview
 ### Purpose

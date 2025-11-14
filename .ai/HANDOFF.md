@@ -15,7 +15,7 @@
 ### What Changed
 - **Application**: Hero cards + detail pages display tier metadata, events show rotation cheat sheet, calculators emit telemetry via Supabase, `/api/health` underpins Docker health checks, and analytics snippet now renders for configured domains
 - **Tooling**: Added Docker build + Compose config, homelab deploy script with webhook ping, and Playwright tests asserting YAML-driven UI
-- **Documentation**: README + docs cover new data files, telemetry, `/api/health`, Docker workflows, and troubleshooting for Supabase logging/Docker health
+- **Documentation**: README + docs cover new data files, telemetry, `/api/health`, Docker workflows, troubleshooting for Supabase logging/Docker health, plus the new maintenance log/TODO + deployment steps for `afk.home.laclair.us`
 
 ## Current Status
 ### Working
