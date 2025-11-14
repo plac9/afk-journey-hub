@@ -1,5 +1,9 @@
 # AFK Journey Hub
 
+[![CI](https://github.com/plac9/afk-journey-hub/actions/workflows/ci.yml/badge.svg)](https://github.com/plac9/afk-journey-hub/actions/workflows/ci.yml)
+[![Content Sync](https://github.com/plac9/afk-journey-hub/actions/workflows/content-sync.yml/badge.svg)](https://github.com/plac9/afk-journey-hub/actions/workflows/content-sync.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Community-first knowledge base and event tracker for Farlight's **AFK Journey**. This LaClair web project curates hero builds, patch intelligence, and daily checklists into a single responsive experience designed for phones and tablets.
 
 ## Why It Exists

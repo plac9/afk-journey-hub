@@ -1,0 +1,34 @@
+# Code Owners for AFK Journey Hub
+# These owners will be automatically requested for review when a PR modifies matching files
+
+# Default owner for everything
+* @plac9
+
+# Documentation
+/docs/ @plac9
+*.md @plac9
+
+# Configuration files
+/.github/ @plac9
+/scripts/ @plac9
+*.yml @plac9
+*.yaml @plac9
+*.json @plac9
+*.config.* @plac9
+
+# Content files (consider adding content maintainers later)
+/content/ @plac9
+/data/ @plac9
+
+# Source code
+/src/ @plac9
+
+# Infrastructure
+/Dockerfile @plac9
+/docker-compose*.yml @plac9
+
+# CI/CD workflows
+/.github/workflows/ @plac9
+
+# AI context (important to review changes)
+/.ai/ @plac9
