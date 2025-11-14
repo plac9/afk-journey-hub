@@ -31,7 +31,7 @@ jobs:
           ./scripts/maintenance/prepare-sync-commit.sh
 
       - name: Commit snapshot data (if changed)
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "chore: update AFK Journey feed snapshots"
           file_pattern: data/imports
