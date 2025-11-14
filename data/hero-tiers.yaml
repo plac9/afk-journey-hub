@@ -1,0 +1,15 @@
+---
+- tier: S
+  title: "Meta Staples"
+  description: "Auto-include carries and batteries for Dream Realm, Guild content, and PvP resets."
+  heroes:
+    - slug: rowan
+      role: "Energy battery"
+      highlight: "Keeps sustain cores online with instant energy injections and emergency healing."
+- tier: A
+  title: "Specialists"
+  description: "Flexible units to plug matchup gaps or farm tower stages efficiently."
+  heroes:
+    - slug: mirael
+      role: "Burst mage"
+      highlight: "Deletes packs in Dream Realm rotations and most campaign stages when grouped."

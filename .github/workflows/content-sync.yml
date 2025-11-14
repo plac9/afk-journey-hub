@@ -1,0 +1,44 @@
+name: Content Sync
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+
+jobs:
+  sync-official-feeds:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install curl dependencies
+        run: sudo apt-get update && sudo apt-get install -y curl
+
+      - name: Run content sync script
+        run: |
+          chmod +x scripts/maintenance/sync-official.sh
+          ./scripts/maintenance/sync-official.sh
+
+      - name: Prepare commit for updated snapshots
+        run: |
+          chmod +x scripts/maintenance/prepare-sync-commit.sh
+          ./scripts/maintenance/prepare-sync-commit.sh
+
+      - name: Commit snapshot data (if changed)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update AFK Journey feed snapshots"
+          file_pattern: data/imports
+
+      - name: Upload data snapshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-sync-data
+          path: data/imports
+          if-no-files-found: ignore

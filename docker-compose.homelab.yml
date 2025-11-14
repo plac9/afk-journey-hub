@@ -1,0 +1,32 @@
+services:
+  afk-journey-hub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: afk-journey-hub
+    env_file:
+      - .env.local
+    environment:
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://afkjourney.local:4000}
+      NEXT_TELEMETRY_DISABLED: "1"
+    ports:
+      - "4000:3000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: homelab-network
+      traefik.http.routers.afk-journey.entrypoints: websecure
+      traefik.http.routers.afk-journey.rule: Host(`afk.home.laclair.us`)
+      traefik.http.routers.afk-journey.tls.certresolver: cloudflare
+      traefik.http.services.afk-journey.loadbalancer.server.port: "3000"
+    networks:
+      - homelab-network
+
+networks:
+  homelab-network:
+    external: true

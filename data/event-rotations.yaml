@@ -1,0 +1,15 @@
+---
+- mode: "Dream Realm"
+  cadence: "Weekly"
+  resetWindow: "00:00 UTC (daily tokens)"
+  focus: "Boss rotators favor sustained single-target damage."
+  callouts:
+    - "Save burst ults for shield windows."
+    - "Swap support pets before Wed reset."
+- mode: "Guild Trials"
+  cadence: "Bi-weekly"
+  resetWindow: "Mon / Thu 12:00 UTC"
+  focus: "Requires mixed damage types and control for escort phases."
+  callouts:
+    - "Pre-load batteries to skip first guardian barrier."
+    - "Assign at least one displacement per lane."

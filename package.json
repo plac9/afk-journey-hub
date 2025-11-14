@@ -1,0 +1,40 @@
+{
+  "name": "afk-journey-hub",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "contentlayer dev",
+    "build": "contentlayer build && next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run lint",
+    "test:e2e": "playwright test --reporter=line --reporter=html --output=test-results",
+    "check": "npm run lint && npm run typecheck && npm run content:lint",
+    "content:lint": "contentlayer build",
+    "content:sync": "./scripts/maintenance/sync-official.sh"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.47.10",
+    "next": "16.0.3",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-markdown": "^10.1.0",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "contentlayer": "^0.3.4",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.3",
+    "rehype-slug": "^6.0.0",
+    "remark-gfm": "^4.0.0",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "wait-on": "^9.0.3"
+  }
+}
