@@ -1,16 +1,55 @@
 # AFK Journey Hub - Session Handoff
 
 **Session Date**: 2025-11-14
-**Duration**: 5.0h
+**Duration**: 9.5h
 
 ## Session Summary
-### What Was Accomplished
+### What Was Accomplished (Full Day)
+
+**Morning - Foundation & Data:**
 - Added YAML datasets (`data/hero-tiers.yaml`, `data/event-rotations.yaml`) powering new tier badges on `/heroes`, rotation intel on `/events`, and `/heroes/[slug]` tier callouts
 - Introduced Supabase-backed telemetry helper + analytics snippet: `/api/tools/*` now log usage events (gracefully no-op when env vars are blank) and Plausible loads automatically via `NEXT_PUBLIC_ANALYTICS_ID`
 - Created `/api/health` along with a Dockerfile, `docker-compose.homelab.yml`, and `scripts/deploy/homelab-up.sh` to spin up a homelab preview with optional webhook notifications
 - Added webhook helper `scripts/maintenance/notify-webhook.sh`, documented Docker/telemetry workflows across README + docs, and expanded Playwright coverage (new YAML data assertions + shared test helpers)
-- Synced the repo to `placlair-admin@docker.home.laclair.us:~/afk-journey-hub`, generated a `.env.local` targeting `https://afk.home.laclair.us`, relaunched `docker compose -f docker-compose.homelab.yml up -d --build` with Traefik labels/external network, and added DNS so `afk.home.laclair.us` now resolves to the container over HTTPS.
-- Created the first local commit (`feat: bootstrap afk journey hub`); push to `git@github.com:plac9/afk-journey-hub.git` is blocked until the remote repo exists.
+- Synced the repo to `placlair-admin@docker.home.laclair.us:~/afk-journey-hub`, generated a `.env.local` targeting `https://afk.home.laclair.us`, relaunched `docker compose -f docker-compose.homelab.yml up -d --build` with Traefik labels/external network, and added DNS so `afk.home.laclair.us` now resolves to the container over HTTPS
+- Created the first local commit (`feat: bootstrap afk journey hub`)
+
+**Afternoon - GitHub Repository & Community Standards:**
+- Created public GitHub repository at https://github.com/plac9/afk-journey-hub
+- Added complete GitHub community standards (10 files):
+  - LICENSE (MIT)
+  - CONTRIBUTING.md (comprehensive development workflow guide)
+  - SECURITY.md (vulnerability reporting policy)
+  - CODE_OF_CONDUCT.md (Contributor Covenant 2.1)
+  - .github/ISSUE_TEMPLATE/bug_report.md
+  - .github/ISSUE_TEMPLATE/feature_request.md
+  - .github/ISSUE_TEMPLATE/config.yml
+  - .github/pull_request_template.md
+  - .github/CODEOWNERS
+  - .github/dependabot.yml (automated dependency updates)
+- Enhanced CI workflow with concurrency controls, minimal permissions, separate jobs (lint, typecheck, build, e2e, summary)
+- Added status badges to README.md (CI, Content Sync, License)
+- Created comprehensive documentation:
+  - docs/GITHUB_SETUP.md (13KB detailed GitHub/Vercel/Supabase setup guide)
+  - scripts/maintenance/bootstrap-supabase.sql (database schema for telemetry)
+  - SETUP_GUIDE.md (quick reference at repo root)
+- Created reusable template: `~/.dotfiles/templates/github-repo-setup-checklist.md` for future projects
+
+**Evening - CI Fixes & Vercel Preparation:**
+- Fixed CI workflow by adding `npx contentlayer build` before typecheck (resolves missing type errors)
+- Resolved all ESLint errors by updating Supabase type definitions (`{}` → `Record<string, never>`)
+- Updated ESLint config to ignore `.github/**` directory
+- Created `.vercelignore` for optimized Vercel deployments
+- All CI jobs now passing: ✅ Lint, ✅ Type Check, ✅ Build, ✅ E2E Tests
+- Installed Vercel CLI globally, ready for deployment
+- Updated comprehensive documentation in Obsidian vault and repository
+
+**Commits Pushed:**
+1. `256fbec` - fix: generate Contentlayer types before typecheck in CI
+2. `5130629` - fix: resolve ESLint errors and optimize for Vercel deployment
+3. `229370f` - feat: add GitHub community standards and enhance CI workflow
+4. `bd28faf` - docs: capture homelab ops status
+5. `74ace89` - docs: capture homelab deployment
 
 ### What Changed
 - **Application**: Hero cards + detail pages display tier metadata, events show rotation cheat sheet, calculators emit telemetry via Supabase, `/api/health` underpins Docker health checks, and analytics snippet now renders for configured domains
@@ -19,23 +58,36 @@
 
 ## Current Status
 ### Working
-✅ Repo structure, docs, `.ai/` context, automation scripts, GitHub Actions (`ci`, `content-sync`)
-✅ Next.js landing + heroes/events/news/tools pages, detail routes, search filters, calculators (AFK/Dream/ARC/Pity) + telemetry logging, analytics snippet, `/api/health`, YAML promo codes/tiers/rotations, Docker homelab assets
+✅ Repo structure, docs, `.ai/` context, automation scripts
+✅ GitHub repository created and public (https://github.com/plac9/afk-journey-hub)
+✅ GitHub Actions: `ci` ✅ PASSING (lint, typecheck, build, e2e), `content-sync` configured
+✅ Complete GitHub community standards (LICENSE, CONTRIBUTING, SECURITY, CODE_OF_CONDUCT, templates, Dependabot)
+✅ Next.js landing + heroes/events/news/tools pages, detail routes, search filters
+✅ Calculators (AFK/Dream/ARC/Pity) + telemetry logging, analytics snippet, `/api/health`
+✅ YAML promo codes/tiers/rotations
+✅ Docker homelab deployment live at https://afk.home.laclair.us
+✅ All ESLint and TypeScript errors resolved
+✅ CI workflow enhanced with concurrency, permissions, separate jobs, artifacts
+✅ Vercel CLI installed and ready for deployment
 
-### In Progress
-🔄 Advanced calculators (ARC tiers, Dream Realm combos) and richer YAML-driven datasets (tier presets expanded this session; UI still needs richer UX + validation)
-🔄 Remote (GitHub/Vercel) provisioning + Supabase project/table creation + secret wiring (`scripts/maintenance/bootstrap-supabase.sql` added; table + keys pending)
-🔄 Observability add-ons (Supabase analytics dashboards, Slack/Discord notifications triggered from production deploys)
-🔄 Homelab monitoring (Traefik/DNS dashboards) so `afk.home.laclair.us` stays healthy now that the route is live
+### Pending
+🟡 Vercel deployment (CLI ready, needs `vercel login` → `vercel --prod`)
+🟡 Supabase project creation + table setup via `scripts/maintenance/bootstrap-supabase.sql`
+🟡 Environment variables in Vercel (NEXT_PUBLIC_SITE_URL minimum, Supabase credentials optional)
+🟡 Advanced calculators (ARC tiers, Dream Realm combos) and richer YAML-driven datasets
+🟡 Content expansion (more hero guides, event strategies, team compositions)
+🟡 Observability dashboards (Supabase analytics, webhook notifications)
 
-### Blocked
-⚠️ Contentlayer CLI prints a stack trace when run under Node 25+ (build succeeds); stick to Node 20 for clean output
+### No Blockers
+✅ All technical blockers resolved - repository fully configured and ready for production deployment
 
 ## Next Session Priorities
-1. Stand up GitHub remote + Vercel project, configure env vars (including Supabase + analytics + NOTIFY webhooks), and run scheduled workflows end-to-end
-2. Flesh out ARC/Dream Realm calculator logic + YAML presets (extend `src/data/calculators/*` and add tests), then expose the data on `/tools`
-3. Instrument telemetry dashboards/notifications (create the Supabase `calculator_usage` table via `scripts/maintenance/bootstrap-supabase.sql`, provide keys, hook Slack/Discord webhooks) and wire Supabase client-side when creds exist
-4. Ensure `afk.home.laclair.us` DNS/Traefik routes to `docker.home.laclair.us:4000` so the homelab URL works externally
+1. **Complete Vercel deployment**: Run `vercel login` → `vercel --prod`, configure `NEXT_PUBLIC_SITE_URL` env var
+2. **Set up Supabase**: Create project, run `scripts/maintenance/bootstrap-supabase.sql`, configure credentials in Vercel
+3. **Verify production deployment**: Test all routes, check `/api/health`, verify mobile responsiveness
+4. **Content expansion**: Add more hero guides beyond Rowan/Mirael, expand event documentation
+5. **Advanced calculators**: Flesh out ARC tier logic, Dream Realm boss-specific strategies
+6. **Optional enhancements**: Configure custom domain (afk.laclair.us), set up Plausible analytics, configure monitoring/alerts
 
 ## Resources
 - Official AFK Journey site for data validation: https://afkjourney.farlightgames.com/official/
