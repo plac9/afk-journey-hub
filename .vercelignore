@@ -1,0 +1,28 @@
+# Vercel Deployment Optimizations
+# Files and directories to exclude from Vercel deployments
+
+# GitHub configuration
+.github
+
+# Documentation (not needed in production)
+docs
+
+# Scripts (not needed in production)
+scripts
+
+# AI context and session notes
+.ai
+.portfolio
+
+# Dotfiles and config
+.dotfiles
+
+# Local development directories
+laclair
+rtis
+infrastructure
+deployment
+
+# Markdown files (except README)
+*.md
+!README.md
